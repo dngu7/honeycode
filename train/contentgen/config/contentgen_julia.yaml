@@ -1,0 +1,72 @@
+---
+exp_name: contentgen
+exp_dir: exp/contentgen 
+runner: ContentgenRunner
+use_gpu: true
+device: cuda:0
+gpus: [0]
+cpucores: 1
+seed: 4321
+dataset:
+  language: julia
+  loader_name: ContentgenCharDataset
+  dataset_name: Julia
+  source: local
+  data_path: ./data/julia
+  repo_path: ## This needs to point to a folder containing julia software repositories
+  train_ratio: 0.8
+  dev_ratio: 0.2
+  has_node_feat: false
+  is_save_split: false  
+  is_overwrite_precompute_repos: true
+  limit_precompute_repos: true
+  is_overwrite_precompute_inputs: true
+  limit_precompute_inputs: true
+  dataset_min_num_nodes: 10
+  dataset_max_num_nodes: 5000
+  max_tokendict_size: 100000
+  start_token: <sof>
+  end_token: <eof>
+  batch_size: 32
+  seq_len: 100
+  window_shift_len: 50
+  file_ext: ['jl', 'md', 'toml', 'yml']
+  limit_repos: ['JuliaLang', 'JuliaOpt', 'JuliaStats', 'FluxML']
+model:
+  model_name: GRUCharModel
+  nhid: 1500
+  char_emb_size: 512
+  ext_emb_size: 128
+  num_layers: 3
+  dropout: 0.0
+  bidirectional: false
+  hid_init: zeros
+train:
+  optimizer: Adam  
+  lr_decay: 0.1
+  lr_decay_epoch: [100000000] # no decay
+  num_workers: 16
+  max_epoch: 400
+  display_iter: 1000
+  display_code_iter: 5000
+  snapshot_iter_count: 20000
+  snapshot_epoch: 3
+  valid_epoch: 50
+  lr: 5.0e-4
+  wd: 0.0e-4
+  momentum: 0.9
+  shuffle: true
+  is_resume: false
+  resume_epoch: 
+  resume_dir: 
+  resume_model:  
+  teacher_forcing_ratio: 0.8
+test:  
+  start_string: '#' 
+  test_ext: 'jl'
+  test_nb: 1
+  num_test_gen: 5000 
+  temperature: 0.8
+  test_batch_size: 1 
+  test_model_dir: 
+  test_model_name: 

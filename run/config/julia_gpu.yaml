@@ -1,0 +1,32 @@
+---
+exp_name: julia
+exp_dir: exp 
+models_dir: models
+use_gpu: true
+gpus: [0]
+seed: 1234
+models:
+  treegen:
+    model_file: trn_model.py
+    model_snapshot: trn_model_snapshot_0000100.pth
+    runner: TrnRunner
+    config: config.yaml
+    batch_size: 20
+    draw_settings: false #all/one/false
+  namegen: 
+    model_file: gru.py
+    model_snapshot: namegen_model_snapshot_0000006.pth
+    runner: NamegenRunner
+    config: config.yaml
+    temperature: 0.8
+    max_gen_len: 50
+    save_sample: false
+  contentgen:
+    model_file: gru.py
+    model_snapshot: contentgen_model_snapshot_0000004.pth
+    runner: ContentgenRunner
+    config: config.yaml
+    ext: ['jl', 'md', 'toml', 'yml']
+    temperature: 0.75
+    max_gen_len: 7500
+    save_sample: false

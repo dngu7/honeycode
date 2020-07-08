@@ -1,0 +1,72 @@
+---
+exp_name: namegen
+exp_dir: exp/namegen 
+runner: NamegenRunner
+use_gpu: true
+device: cuda:0
+gpus: [0]
+cpucores: 1
+seed: 4321
+dataset:
+  language: julia
+  loader_name: NamegenCharDataset
+  dataset_name: Julia
+  source: local
+  data_path: ./data/julia
+  file_ext: jl 
+  train_ratio: 0.8
+  dev_ratio: 0.2
+  has_node_feat: false
+  is_save_split: false  
+  is_sample_subgraph: true 
+  is_overwrite_precompute_repos: false
+  limit_precompute_repos: false
+  is_overwrite_precompute_inputs: true
+  limit_precompute_inputs: false
+  dataset_min_num_nodes: 10
+  dataset_max_num_nodes: 5000
+  max_tokendict_size: 100000
+  end_token: <eof>
+  batch_size: 1
+  max_depth: 10
+  max_child: 15
+  max_neigh: 15
+  node_types: ['dir', 'file']
+model:
+  model_name: GRUCharNameGenModel
+  nhid: 1500
+  input_emb_size: 512
+  depth_emb_size: 128 
+  nodetype_emb_size: 128
+  num_layers: 3
+  dropout: 0.0
+  bidirectional: false
+  hid_init: zeros
+train:
+  optimizer: Adam  
+  lr_decay: 0.1
+  lr_decay_epoch: [100000000] # no decay
+  num_workers: 16
+  max_epoch: 20
+  display_iter: 5000
+  display_code_iter: 5000
+  snapshot_iter_count: 20000
+  snapshot_epoch: 1
+  valid_epoch: 50
+  lr: 5.0e-4
+  wd: 0.0e-4
+  momentum: 0.9
+  shuffle: true
+  is_resume: false
+  resume_epoch: 
+  resume_dir: 
+  resume_model:  
+  teacher_forcing_ratio: 0.8
+test:  
+  max_gen_length: 50 
+  num_gen_samples: 8 # number of generated samples 
+  temperature: 0.8 
+  test_batch_size: 1 
+  test_exp_dir: ./exp/namegen
+  test_model_dir: GRUCharNameGenModel_Julia_2020-May-28-15-42-11_3900
+  test_model_name: model_snapshot_0000006.pth

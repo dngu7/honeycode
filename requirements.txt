@@ -1,0 +1,10 @@
+pytorch>=1.4.0
+pyemd
+networkx >=2.3
+tqdm
+scipy
+pyyaml
+easydict
+matplotlib 
+click >= 7.0
+numpy >= 1.18.1
