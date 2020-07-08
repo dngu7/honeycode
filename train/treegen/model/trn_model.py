@@ -180,7 +180,7 @@ class TrnModel(nn.Module):
     self.sm = nn.Softmax(dim=1)
     self.node_dist_feat_dim = config.model.node_dist_feat_dim
 
-    self.output_theta = nn.Sequential(
+    self.final_layer = nn.Sequential(
         nn.Linear(self.hidden_dim, self.output_dim))
         
 
@@ -214,7 +214,6 @@ class TrnModel(nn.Module):
                  att_idx=None,
                  node_dist=None):
 
-    """ generate adj in row-wise auto-regressive fashion """
     B, C, N_max, _ = A_pad.shape
 
     A_pad = A_pad.view(B * C * N_max, -1)
@@ -223,15 +222,12 @@ class TrnModel(nn.Module):
     node_feat = self.decoder_input(A_pad)  # BCN_max X H
     node_feat_c = self.decoder_input_c(A_pad)
 
-    ### GNN inference
-    # pad zero as node feature for newly generated nodes (1st row)
     node_feat = F.pad(
         node_feat, (0, 0, 1, 0), 'constant', value=0.0)  # (BCN_max + 1) X N_max
 
     node_feat_c = F.pad(
         node_feat_c, (0, 0, 1, 0), 'constant', value=0.0)  # (BCN_max + 1) X N_max
 
-    # create symmetry-breaking edge feature for the newly generated nodes
     att_idx = att_idx.view(-1, 1)
 
     att_edge_feat = torch.zeros(edges.shape[0],
@@ -265,11 +261,11 @@ class TrnModel(nn.Module):
 
     diff = node_state[node_idx_gnn[:, 0], :] - node_state[node_idx_gnn[:, 1], :]
 
-    log_theta = self.output_theta(diff)  # B X (tt+K)K
+    out = self.final_layer(diff) 
 
-    log_theta = log_theta.view(-1, 1)  # B X CN(N-1)/2 X K
+    out = out.view(-1, 1) 
 
-    return log_theta
+    return out
 
   def _sampling(self, B):
     """ generate adj in row-wise auto-regressive fashion """
