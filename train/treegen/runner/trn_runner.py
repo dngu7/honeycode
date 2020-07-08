@@ -114,7 +114,6 @@ class TrnRunner(object):
           os.path.join(base_path, '{}_test.p'.format(config.dataset.dataset_name)))
 
   def train(self):
-    logger.debug('starting training')
 
     train_dataset = eval(self.dataset_conf.loader_name)(self.config, self.graphs_train, tag='train')
 
@@ -131,7 +130,7 @@ class TrnRunner(object):
     
     #Parallelize gpu
     if self.use_gpu:
-      model = model.to(self.device)
+      model = data_parallel.DataParallel(model, device_ids=self.gpus).to(self.device)
     
     params = filter(lambda p: p.requires_grad, model.parameters())
 

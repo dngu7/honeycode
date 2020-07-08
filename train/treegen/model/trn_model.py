@@ -454,7 +454,6 @@ class TrnModel(nn.Module):
         loss                        if training
         list of adjacency matrices  else
     """
-
     is_sampling = input_dict[
         'is_sampling'] if 'is_sampling' in input_dict else False
     batch_size = input_dict[

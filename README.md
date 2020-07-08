@@ -33,9 +33,8 @@ To demonstrate how to begin training, enter one of the folders (treegen) as an e
 
 Use main.py to kick off training with a gpu using the following command. 
 
-```python main.py --device gpu```
+```python main.py```
 
-You may use the cpu option, however this is not recommended due to the long waiting times. 
 
 There are more custom options, such as selecting log levels, which can be found with the help flag. 
 
@@ -69,8 +68,8 @@ Place the contents of these downloads into the 'run' directory under their respe
 
 | Generator         | Download Link             | Save Location    |
 | :---------------- |:-------------|:-----|
-| TRN      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/treegen.zip) | /repogen/run/models/treegen/ |
-| Names      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/namegen.zip)      |   /repogen/run/models/namegen/ |
+| Tree      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/treegen.zip) | /repogen/run/models/treegen/ |
+| Name      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/namegen.zip)      |   /repogen/run/models/namegen/ |
 | Content    | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/contentgen.zip)      |    /repogen/run/models/contentgen/ |
 
 
