@@ -93,6 +93,8 @@ If you omit the output flag, then Repogen will default save to its experiment fo
 The generation of the repostiory structure is visualized in the following figure. 
 ![gen_step](https://github.com/dngu7/myfiles/blob/master/generation_steps.png?raw=true)
 
+Full step by step animation 
+![gen_gif](https://github.com/dngu7/myfiles/blob/master/new_gif.gif?raw=true)
 
 ### Samples
 Below you will find samples created by each network. 
