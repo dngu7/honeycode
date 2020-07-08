@@ -102,14 +102,12 @@ class GNN(nn.Module):
       msg = msg * att_weight
 
     ### aggregate message by sum
-    #print("shapes:", state.shape, msg.shape)
     state_msg = torch.zeros(state.shape[0], msg.shape[1]).to(state.device)
     scatter_idx = edge[:, [1]].expand(-1, msg.shape[1])
     state_msg = state_msg.scatter_add(0, scatter_idx, msg)
 
     ### state update
     state, state_c = self.update_func[layer_idx](state_msg, (state, state_c))
-    #state = self.update_func[layer_idx](state_msg, state)
     return state, state_c
 
   def forward(self, node_feat, node_feat_c, edge, edge_feat, dist_feat, graph_idx=None):
@@ -185,14 +183,6 @@ class TrnModel(nn.Module):
     self.output_theta = nn.Sequential(
         nn.Linear(self.hidden_dim, self.output_dim))
         
-
-    self.output_alpha = nn.Sequential(
-        nn.Linear(self.hidden_dim, self.hidden_dim),
-        nn.ReLU(inplace=True),
-        nn.Linear(self.hidden_dim, self.hidden_dim),
-        nn.ReLU(inplace=True),
-        nn.Linear(self.hidden_dim, 1),
-        nn.LogSoftmax(dim=1))
 
     self.embedding_dim = config.model.embedding_dim
     self.decoder_input = nn.Sequential(

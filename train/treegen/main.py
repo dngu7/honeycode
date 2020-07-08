@@ -8,13 +8,13 @@ from utils import read_config, setup_logger
 
 
 @click.command()
-@click.option('--network','-n', default='trn', help='Choose your neural net')
+@click.option('--network','-n', default='trn', help='Choose the network')
 @click.option('--mode','-m', default='train',
   type=click.Choice(['train', 'eval'], case_sensitive=False),
   help='Train or evaluation mode')
-@click.option('--data','-d', default='julia', help='Dataset')
+@click.option('--data','-d', default='julia', help='Dataset name')
 @click.option('--config_dir','-c', default='/config', help='Point to config folder')
-@click.option('--log_level','-l', default='DEBUG')
+@click.option('--log_level','-l', default='DEBUG', help='Choose between debug, info, critical, etc')
 
 def main(network, mode, data, config_dir, log_level):
   # Setup Config (if exists)

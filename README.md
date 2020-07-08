@@ -19,21 +19,21 @@ We recommend using a gpu to run the training and generation process.
 
 ### Train Folder
 
-The train folder holds the algorithms to train the 3 neural networks inside the overall repogen system. 
+The train folder holds the algorithms to train the 3 neural networks inside the overall honeycode system. 
 
 The models train on graphical representations of software repostories.
 A usable example can be downloaded from this [link here](https://repogen.s3-ap-southeast-2.amazonaws.com/julia_graph_data.zip), or you may introduce your own in the same format. 
 Make sure to place these inside the "data" folder in all training repositories. 
 The example below refers to the path to place training data for treegen. 
 ```
-  /repogen/train/treegen/data/julia
+  /honeycode/train/treegen/data/julia
 ```
 
 To demonstrate how to begin training, enter one of the folders (treegen) as an example.
 
 Use main.py to kick off training with a gpu using the following command. 
 
-```python main.py```
+```python main.py -m train```
 
 
 There are more custom options, such as selecting log levels, which can be found with the help flag. 
@@ -53,7 +53,7 @@ Once you have trained a network, setup a path to the new checkpoints in config a
 
 You can run evaluation of tests (treegen) or generation of samples (namegen/contentgen) using the following command.
 
-```python main.py --device gpu --mode eval```
+```python main.py -m eval```
 
 In namegen and contentgen, you have the option of creating different samples through two possible variables: seed and temperature. 
 Decreasing temperature reduces the probability of randomness, and vice versa. 
@@ -68,9 +68,9 @@ Place the contents of these downloads into the 'run' directory under their respe
 
 | Generator         | Download Link             | Save Location    |
 | :---------------- |:-------------|:-----|
-| Tree      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/treegen.zip) | /repogen/run/models/treegen/ |
-| Name      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/namegen.zip)      |   /repogen/run/models/namegen/ |
-| Content    | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/contentgen.zip)      |    /repogen/run/models/contentgen/ |
+| Tree      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/pretrained/treegen.zip) | /honeycode/run/models/treegen/ |
+| Name      | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/pretrained/namegen.zip)      |   /honeycode/run/models/namegen/ |
+| Content    | [Link](https://repogen.s3-ap-southeast-2.amazonaws.com/pretrained/contentgen.zip)      |    /honeycode/run/models/contentgen/ |
 
 
 
@@ -78,7 +78,7 @@ Place the contents of these downloads into the 'run' directory under their respe
 The 'Run' folder contains the entry-point to run all 3 networks sequentially to generate samples of synthetic software repostiory. 
 
 Ensure you have the correct path to the 'model_file' and 'model_snapshot' for each network properly setup in the yaml file found under 'config' folder. 
-We recommend that you place these files under their respective 'models' folder found in ```/repogen/run/models/```.
+We recommend that you place these files under their respective 'models' folder found in ```/honeycode/run/models/```.
 
 The model_file should contain the model class and can be copied from the training folders. We leave the existing versions as an example.
 
@@ -87,7 +87,7 @@ Begin generation by entering into the 'Run' folder and running the following com
 ```python main.py -s 1 -o '~/Downloads/' ```
 
  where the ```-s``` flag denotes the number of samples and the ```-o``` flag denotes the output location of the samples.
-If you omit the output flag, then Repogen will default save to its experiment folder. 
+If you omit the output flag, then HoneyCode will default save to its experiment folder. 
 
 #### Generation Process
 The generation of the repostiory structure is visualized in the following figure. 
