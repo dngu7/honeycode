@@ -113,7 +113,8 @@ Samples of directory names from name generative model. The left-column represent
 Julia sample snippet from the content generation network. This code was taken from a sample of 10000 characters and uses temperature of 0.8. Lower temperature results in more likely characters appearing. The sample looks visually authentic, however does not compile due to 3 missing variables inside the for-loop block. There are also unintelligible English phrases in the comments such as "Code code is cruce"..
 
 ## Acknowledgment
-TRN code was adapted from https://github.com/lrjconan/GRAN. This work has been supported by Cybersecurity CRC.
+Treegen code was adapted from https://github.com/lrjconan/GRAN.
+This work has been supported by Cybersecurity CRC.
 
 ## Reference us
 Please cite the referenced paper above if this work has helped you in anyway. 
