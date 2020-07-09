@@ -388,11 +388,10 @@ class TrnModel(nn.Module):
 
 
       diff = diff.view(-1, node_state.shape[2])
-      log_theta = self.output_theta(diff)
 
-      log_theta = log_theta.view(B, -1)
-
-      prob = self.sm(log_theta)
+      out = self.final_layer(diff)
+      out = out.view(B, -1)
+      prob = self.sm(out)
 
       new_matrix_border = torch.multinomial(prob, 1)
 
