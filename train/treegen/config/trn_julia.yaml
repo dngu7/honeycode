@@ -59,6 +59,6 @@ test:
   is_single_plot: false # visualize `num_vis` samples in a single image
   num_vis: 20
   vis_num_row: 5 # visualize `num_vis` samples in `vis_num_row` rows
-  test_model_dir: ./exp/TRN/TrnModel_Julia_2020-Jul-09-09-10-46_14698
-  test_model_name: model_snapshot_0000100.pth
+  test_model_dir: #./exp/TRN/TrnModel_Julia_2020-Jul-08-19-final
+  test_model_name: #model_snapshot_1.pth
   init_tree: true #initialize generative graph with directory and one node
