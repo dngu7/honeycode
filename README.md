@@ -4,7 +4,9 @@ This repository is the official Pytorch implementation of HoneyCode, a machine l
 
 This project implements the paper "HoneyCode: Automating Deceptive Software Repositories with Deep Generative Models".
 
+
 Paper: https://scholarspace.manoa.hawaii.edu/bitstream/10125/71456/0679.pdf
+
 Video: https://www.youtube.com/watch?v=sv6PlUd_Ox0&feature=youtu.be
 
 ## Installation
