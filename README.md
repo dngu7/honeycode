@@ -2,7 +2,8 @@
 
 This repository is the official Pytorch implementation of HoneyCode, a machine learning system that uses a Tree Recurrent Network (TRN) and recurrent neural networks (RNNs) to generate synthetic software repositories for cybersecurity deception. 
 
-This project implements the paper "HoneyCode: Automating Deceptive Software Repositories with Deep Generative Models" found @ TBA. 
+This project implements the paper "HoneyCode: Automating Deceptive Software Repositories with Deep Generative Models".
+Link to paper: https://scholarspace.manoa.hawaii.edu/bitstream/10125/71456/0679.pdf
 
 ## Installation
 
